@@ -1,0 +1,262 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+  --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --color-canvas: #F6F6F2;
+  --color-surface: #FFFFFF;
+  --color-surface-subtle: #FAF9F6;
+  --color-border: #E7E5E0;
+  --color-forest: #133A26;
+  --color-botanical: #2D7A4D;
+  --color-ink: #141A16;
+  --color-ink-secondary: #525E56;
+  --color-ink-muted: #738077;
+}
+
+@layer base {
+  html {
+    font-size: 16px;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+  body {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 14px;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.025em;
+    color: var(--color-ink);
+  }
+  table {
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* ── DESIGN.md Typography Discipline Enforcement ── */
+/* 1. Cap excessive 900 weights to clean 700 */
+.font-black {
+  font-weight: 700 !important;
+}
+
+/* 2. Enforce 12px minimum readable floor (no 9px/10px/11px micro-text) */
+[class*="text-[9px]"],
+[class*="text-[10px]"],
+[class*="text-[11px]"] {
+  font-size: 0.75rem !important;
+  line-height: 1.35 !important;
+}
+
+/* 3. Eliminate AI-slop wide-tracked shouting uppercase */
+.tracking-widest,
+.tracking-wider {
+  letter-spacing: 0.01em !important;
+}
+th.uppercase,
+span.uppercase,
+label.uppercase {
+  text-transform: none !important;
+}
+
+/* ── Editorial Surface Card (Crisp White + Warm Hairline, No Cheesy Bounce) ── */
+.agri-card {
+  background-color: #FFFFFF;
+  border: 1px solid #E7E5E0;
+  box-shadow: 0 1px 2px rgba(20, 26, 22, 0.03);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.agri-card:hover {
+  border-color: #D6D3CB;
+  box-shadow: 0 4px 12px rgba(20, 26, 22, 0.04);
+}
+
+/* ── Agri Input Component ── */
+.agri-input {
+  background-color: #FAF9F6;
+  border: 1px solid #E2E0D9;
+  color: #141A16;
+  transition: border-color 0.15s ease, background-color 0.15s ease;
+}
+
+.agri-input:focus {
+  background-color: #FFFFFF;
+  border-color: #133A26;
+  box-shadow: 0 0 0 3px rgba(19, 58, 38, 0.08);
+  outline: none;
+}
+
+/* ── Glassmorphism Utility ── */
+.glass {
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* ── Animated Gauge Rings ── */
+.gauge-ring {
+  transition: stroke-dashoffset 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Custom Scrollbars ── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ── Keyframe Animations ── */
+
+/* Fade In + Slide Up */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.35s ease-out forwards;
+}
+
+/* Slow Spin (weather icon) */
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+.animate-spin-slow {
+  animation: spin-slow 8s linear infinite;
+}
+
+/* Pulse scale ping for map markers */
+@keyframes map-ping {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50%       { transform: scale(1.5); opacity: 0; }
+}
+.animate-map-ping {
+  animation: map-ping 2s ease-in-out infinite;
+}
+
+/* Shimmer loading skeleton */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #f1f5f9 25%, #e2e8f0 50%, #f1f5f9 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Count-up number reveal */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.animate-countUp {
+  animation: countUp 0.5s ease-out 0.1s both;
+}
+
+/* Slide in from left for sidebar items */
+@keyframes slideInLeft {
+  from { opacity: 0; transform: translateX(-12px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+.animate-slideInLeft {
+  animation: slideInLeft 0.3s ease-out forwards;
+}
+
+/* Ripple effect for buttons */
+.btn-ripple {
+  position: relative;
+  overflow: hidden;
+}
+.btn-ripple::after {
+  content: '';
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 0; height: 0;
+  background: rgba(255,255,255,0.3);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: width 0.4s ease, height 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+}
+.btn-ripple:active::after {
+  width: 200px; height: 200px;
+  opacity: 0;
+}
+
+/* ── Status Badge Variants ── */
+.badge-functional {
+  background: #dcfce7;
+  color: #15803d;
+  border: 1px solid #86efac;
+}
+.badge-partial {
+  background: #fef3c7;
+  color: #92400e;
+  border: 1px solid #fcd34d;
+}
+.badge-rehab {
+  background: #e0f2fe;
+  color: #075985;
+  border: 1px solid #7dd3fc;
+}
+.badge-nonfunctional {
+  background: #ffe4e6;
+  color: #9f1239;
+  border: 1px solid #fda4af;
+}
+
+/* ── Leaflet Map Overrides ── */
+.leaflet-container {
+  font-family: 'Inter', system-ui, sans-serif;
+  border-radius: 12px;
+}
+.leaflet-popup-content-wrapper {
+  border-radius: 12px !important;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15) !important;
+  border: 2px solid #15803d !important;
+}
+.leaflet-popup-tip {
+  background: #15803d !important;
+}
+.leaflet-control-zoom {
+  border-radius: 10px !important;
+  overflow: hidden;
+}
+
+/* ── Heatmap Grid ── */
+.heatmap-good    { background: #dcfce7; color: #166534; }
+.heatmap-moderate { background: #fef3c7; color: #92400e; }
+.heatmap-bad     { background: #fee2e2; color: #991b1b; }
+.heatmap-na      { background: #f1f5f9; color: #94a3b8; }
+
+/* ── Print Styles ── */
+@media print {
+  .no-print { display: none !important; }
+  .print-break { page-break-before: always; }
+  body { background: white !important; }
+  .agri-card {
+    box-shadow: none !important;
+    border: 1px solid #e2e8f0 !important;
+  }
+}

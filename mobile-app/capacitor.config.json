@@ -1,0 +1,17 @@
+{
+  "appId": "com.irrigation.survey.collector",
+  "appName": "Irrigation Data Collector",
+  "webDir": "dist",
+  "bundledWebRuntime": false,
+  "server": {
+    "androidScheme": "https"
+  },
+  "plugins": {
+    "Camera": {
+      "permissions": ["camera", "photos"]
+    },
+    "Geolocation": {
+      "permissions": ["location"]
+    }
+  }
+}

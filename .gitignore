@@ -1,0 +1,14 @@
+.firebase/
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+node_modules/
+**/node_modules/
+**/dist/
+**/build/
+mobile-app/android/.gradle/
+mobile-app/android/app/build/
+.env
+.env.local
+.DS_Store
+Thumbs.db
