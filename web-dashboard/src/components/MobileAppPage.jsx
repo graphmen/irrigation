@@ -86,7 +86,7 @@ export default function MobileAppPage() {
           {/* Primary & Secondary Actions */}
           <div className="flex flex-col sm:flex-row gap-3 pt-1">
             <a
-              href="/downloads/NIMIS_Field_Collector_v2.5.apk"
+              href="https://github.com/graphmen/irrigation/raw/main/Irrigation_Data_Collector_v1.0.apk"
               download="NIMIS_Field_Collector_v2.5.apk"
               className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-[#133A26] hover:bg-[#0F2F1E] text-white text-sm font-semibold transition-colors"
             >
@@ -95,13 +95,13 @@ export default function MobileAppPage() {
             </a>
 
             <a
-              href="http://localhost:5173/"
+              href="https://github.com/graphmen/irrigation"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-lg bg-white border border-[#E2E0D9] hover:border-[#133A26] text-[#141A16] text-sm font-medium transition-colors"
             >
               <ExternalLink className="w-4 h-4 text-[#133A26]" />
-              <span>Launch mobile web preview</span>
+              <span>GitHub Repository & Releases</span>
             </a>
           </div>
 
